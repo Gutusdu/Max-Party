@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10182c">
+  <title>PartyQuest – Inselchaos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">DEIN PARTY-ABENTEUER</div>
+      <h1>PartyQuest <span>✦</span></h1>
+    </div>
+    <div class="round-box"><small>RUNDE</small><strong id="round">1 / 20</strong></div>
+  </header>
+
+  <main>
+    <section class="board-shell">
+      <div class="board-heading">
+        <div><span class="live-dot"></span> INSELCHAOS</div>
+        <span class="tiny-label">4 SPIELER · LOKALER PROTOTYP</span>
+      </div>
+      <div class="board" id="board">
+        <div class="island island-desert"><span>🏜️</span><b>Staubtal</b></div>
+        <div class="island island-snow"><span>❄️</span><b>Frostgipfel</b></div>
+        <div class="island island-volcano"><span>🌋</span><b>Glutklippe</b></div>
+        <div class="island island-town"><span>🏘️</span><b>Wirbelstadt</b></div>
+        <div class="island island-jungle"><span>🌴</span><b>Dschungelbucht</b></div>
+        <svg class="paths" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M90 490 C140 430 190 500 250 450 S340 385 390 430 S500 490 550 420 S650 360 690 405 S800 450 850 380 S900 280 840 245 S760 180 700 220 S590 250 540 180 S450 110 390 170 S280 220 230 160 S150 150 120 220 S170 300 250 290 S360 260 410 300 S520 330 570 290 S660 290 700 330 S790 310 840 245"
+            fill="none" stroke="#24324a" stroke-width="27" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+          <path d="M90 490 C140 430 190 500 250 450 S340 385 390 430 S500 490 550 420 S650 360 690 405 S800 450 850 380 S900 280 840 245 S760 180 700 220 S590 250 540 180 S450 110 390 170 S280 220 230 160 S150 150 120 220 S170 300 250 290 S360 260 410 300 S520 330 570 290 S660 290 700 330 S790 310 840 245"
+            fill="none" stroke="#f7e6b2" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div id="spaces" class="spaces"></div>
+        <div class="start-flag">🚩 START</div>
+        <div class="star-shop">⭐<small>STERN-<br>PLATZ</small></div>
+      </div>
+      <div class="legend">
+        <span><i class="dot blue"></i> Münzen</span>
+        <span><i class="dot yellow"></i> Ereignis</span>
+        <span><i class="dot red"></i> Minispiel</span>
+        <span><i class="dot green"></i> Spezial</span>
+        <span><i class="dot purple"></i> Überraschung</span>
+      </div>
+    </section>
+
+    <section class="game-controls">
+      <div class="turn-card">
+        <div class="turn-head"><span>AM ZUG</span><span id="turnCount">Spieler 1 von 4</span></div>
+        <div class="current-player">
+          <div id="currentAvatar" class="avatar red-avatar">🚀</div>
+          <div class="player-name"><strong id="currentName">Spieler 1</strong><small id="currentHint">Bereit für dein Abenteuer?</small></div>
+          <div class="dice" id="diceFace">🎲</div>
+        </div>
+        <div class="action-row">
+          <button class="primary" id="rollBtn">🎲 Würfeln</button>
+          <button class="secondary" id="endBtn" disabled>Weiter →</button>
+        </div>
+        <p class="status" id="status" aria-live="polite">Würfle, um deine Figur über die Inseln zu bewegen.</p>
+      </div>
+
+      <div class="players-card">
+        <div class="section-title">DEINE CREW <span>★</span></div>
+        <div id="playerList" class="player-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="eventDialog">
+    <div class="dialog-icon" id="dialogIcon">🎉</div>
+    <div class="eyebrow" id="dialogEyebrow">INSEL-EVENT</div>
+    <h2 id="dialogTitle">Was für ein Glück!</h2>
+    <p id="dialogText">Du hast etwas gefunden.</p>
+    <button class="primary full" id="dialogButton">Weiter geht's</button>
+  </dialog>
+
+  <footer>PROTOTYP 0.1 · INSELCHAOS · GEMEINSAM SPIELEN, STERNE JAGEN</footer>
+  <script src="app.js"></script>
+</body>
+</html>
