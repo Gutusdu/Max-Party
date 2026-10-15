@@ -3,58 +3,84 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#10182c">
-  <meta name="description" content="PartyQuest – Inselchaos: ein lokales Brettspiel für bis zu vier Spieler.">
+  <meta name="theme-color" content="#102d3a">
   <title>PartyQuest – Inselchaos</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <div class="brand"><div class="brand-mark">✦</div><div><div class="eyebrow">DAS CHAOTISCHE PARTY-BRETT­SPIEL</div><h1>PartyQuest <span>Inselchaos</span></h1></div></div>
-      <div class="header-actions"><div class="round-box"><small>RUNDE</small><strong id="roundLabel">1 / 20</strong></div><button class="icon-button" id="rulesBtn" aria-label="Spielregeln" title="Spielregeln">ⓘ</button><button class="icon-button" id="restartBtn" aria-label="Neustart" title="Neustart">↻</button></div>
+      <div class="brand">
+        <div class="brand-mark">PQ</div>
+        <div><div class="eyebrow">DAS PARTY-BRETT-SPIEL</div><h1>Party<span>Quest</span></h1></div>
+      </div>
+      <div class="top-actions">
+        <div class="round-pill"><span class="live-dot"></span><span id="roundLabel">Runde 1 / 20</span></div>
+        <button class="icon-button" id="rulesBtn" aria-label="Regeln">?</button>
+        <button class="icon-button" id="soundBtn" aria-label="Sound umschalten">♫</button>
+      </div>
     </header>
 
     <main class="layout">
       <section class="board-panel panel">
-        <div class="panel-heading"><div><span class="live-dot"></span><strong>INSELCHAOS</strong><small>Dein Weg zum Sieg</small></div><div class="board-badges"><span>👥 4 Spieler</span><span>🎲 1 Würfel</span></div></div>
-        <div class="board" id="board" aria-label="Spielbrett">
-          <div class="island island-desert"><span>🏜️</span><b>Staubtal</b></div>
-          <div class="island island-snow"><span>❄️</span><b>Frostgipfel</b></div>
-          <div class="island island-volcano"><span>🌋</span><b>Glutklippe</b></div>
-          <div class="island island-town"><span>🏘️</span><b>Wirbelstadt</b></div>
-          <div class="island island-jungle"><span>🌴</span><b>Dschungelbucht</b></div>
-          <svg class="paths" id="paths" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><polyline id="pathLine" points="" fill="none" stroke="#26354d" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/><polyline id="pathInner" points="" fill="none" stroke="#ffe8ad" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div class="spaces" id="spaces"></div>
-          <div class="tokens" id="tokens"></div>
-          <div class="start-flag">🚩 <span>START</span></div>
-          <div class="star-marker" id="starMarker"><span>⭐</span><small>STERN</small></div>
-          <div class="board-center"><div class="center-logo">✦</div><strong>INSEL<br>CHAOS</strong><small>WER SAMMELT<br>MEHR STERNE?</small></div>
+        <div class="section-heading">
+          <div><div class="eyebrow">DIE INSEL</div><h2>Auf ins Chaos!</h2></div>
+          <div class="legend"><span><i class="legend-dot coin-dot"></i>Münzen</span><span><i class="legend-dot star-dot"></i>Stern</span><span><i class="legend-dot game-dot"></i>Minispiel</span></div>
         </div>
-        <div class="legend"><span><i class="dot blue"></i>Münzen</span><span><i class="dot yellow"></i>Glück</span><span><i class="dot red"></i>Challenge</span><span><i class="dot green"></i>Bonus</span><span><i class="dot purple"></i>Überraschung</span><span><i class="dot star"></i>Stern kaufen</span></div>
-        <div class="board-foot"><span>💡 Tipp: Über das Sternenfeld laufen reicht!</span><span id="spaceHint">24 Felder · 20 Runden</span></div>
+        <div class="board-wrap">
+          <div class="island-decor decor-one">🌴</div><div class="island-decor decor-two">🌊</div><div class="island-decor decor-three">🪨</div>
+          <div id="board" class="board" aria-label="Spielbrett"></div>
+          <div class="board-center">
+            <div class="center-sun">☀️</div>
+            <div class="center-title">INSEL<br>CHAOS</div>
+            <div class="center-sub">ROLL · MOVE · PARTY</div>
+            <div class="center-treasure">🏝️</div>
+          </div>
+        </div>
+        <div class="board-footer"><span>🎲 <b>24 Felder</b></span><span>⭐ <b>Stern kostet 20 Münzen</b></span><span>🏁 <b>20 Runden</b></span></div>
       </section>
 
       <aside class="sidebar">
-        <section class="turn-card panel">
-          <div class="turn-top"><span class="section-kicker">JETZT AM ZUG</span><span id="turnCount" class="turn-count">Spieler 1 von 4</span></div>
-          <div class="current-player"><div id="currentAvatar" class="avatar red-avatar">🚀</div><div class="current-copy"><strong id="currentName">Spieler 1</strong><small id="currentHint">Dein Abenteuer wartet.</small></div><div class="dice" id="diceFace">🎲</div></div>
-          <div class="action-row"><button class="primary" id="rollBtn">🎲 Würfeln</button><button class="secondary" id="nextBtn" disabled>Weiter <span>→</span></button></div>
-          <div class="status" id="status" aria-live="polite">Würfle und zieh über die Insel!</div>
-          <div class="turn-rule"><span>⭐</span><p>Ein Stern kostet <b>20 Münzen</b>. Läufst du daran vorbei, wird er automatisch gekauft, wenn du genug Münzen hast.</p></div>
+        <section class="panel current-panel">
+          <div class="eyebrow">AM ZUG</div>
+          <div class="current-player">
+            <div id="activeAvatar" class="avatar large">🦊</div>
+            <div class="player-info"><h2 id="activeName">Spieler 1</h2><div id="activeStatus" class="muted">Bereit für den Zug?</div></div>
+          </div>
+          <div class="stats-row">
+            <div class="stat-box"><span class="stat-icon">🪙</span><div><strong id="activeCoins">10</strong><small>Münzen</small></div></div>
+            <div class="stat-box"><span class="stat-icon">⭐</span><div><strong id="activeStars">0</strong><small>Sterne</small></div></div>
+            <div class="stat-box"><span class="stat-icon">📍</span><div><strong id="activePosition">START</strong><small>Position</small></div></div>
+          </div>
+          <div class="dice-area">
+            <div id="dice" class="dice">⚀</div>
+            <div class="dice-copy"><strong id="diceTitle">Würfel bereit?</strong><span id="diceText">Würfle und entdecke dein Feld.</span></div>
+          </div>
+          <button id="rollBtn" class="primary-button"><span>🎲</span> Würfeln <span class="button-arrow">→</span></button>
+          <div id="turnHint" class="turn-hint">Jeder Zug kann alles ändern.</div>
         </section>
-        <section class="crew-card panel"><div class="section-title"><div><span class="section-kicker">DEINE CREW</span><h2>Spielstand</h2></div><span class="crew-icon">♟</span></div><div id="playerList" class="player-list"></div><div class="score-note">Am Ende gewinnt, wer die meisten Sterne hat. Bei Gleichstand zählen die Münzen.</div></section>
-        <section class="log-card panel"><div class="section-title"><div><span class="section-kicker">INSELTAGEBUCH</span><h2>Was passiert?</h2></div><span class="log-icon">☰</span></div><div id="gameLog" class="game-log"><div class="log-entry"><span>🌴</span><p>Willkommen auf der Insel!<small>Das Abenteuer beginnt.</small></p></div></div></section>
+
+        <section class="panel players-panel">
+          <div class="section-heading compact"><div><div class="eyebrow">DIE CREW</div><h3>Spielerübersicht</h3></div><span class="mini-badge">4 PLAYERS</span></div>
+          <div id="playerList" class="player-list"></div>
+        </section>
+
+        <section class="panel feed-panel">
+          <div class="section-heading compact"><div><div class="eyebrow">LIVE-TICKER</div><h3>Was geht ab?</h3></div><span class="live-label">LIVE</span></div>
+          <div id="eventLog" class="event-log" aria-live="polite"></div>
+        </section>
       </aside>
     </main>
-    <footer><span>PARTYQUEST · INSELCHAOS</span><span>LOKAL SPIELEN · EIN GERÄT · VIER ABENTEURER</span></footer>
+
+    <footer class="bottom-bar"><span>PARTYQUEST <b>·</b> INSELCHAOS</span><span>Gebaut für gute Freunde und schlechte Entscheidungen.</span><button id="restartBtn" class="text-button">↻ Neues Spiel</button></footer>
   </div>
 
-  <dialog id="eventDialog" class="game-dialog"><div class="dialog-glow"></div><button class="dialog-close" id="closeDialog" aria-label="Schließen">×</button><div class="dialog-icon" id="dialogIcon">🎉</div><div class="eyebrow" id="dialogEyebrow">INSEL-EVENT</div><h2 id="dialogTitle">Was für ein Glück!</h2><p id="dialogText">Du hast etwas gefunden.</p><div id="dialogExtra" class="dialog-extra"></div><button class="primary full" id="dialogButton">Weiter geht's</button></dialog>
-
-  <dialog id="setupDialog" class="game-dialog setup-dialog"><div class="dialog-icon">🏝️</div><div class="eyebrow">MACH DIE CREW BEREIT</div><h2>Wer spielt mit?</h2><p>Gebt euren Figuren Namen. Ihr spielt gemeinsam an einem Gerät.</p><div class="name-fields" id="nameFields"></div><button class="primary full" id="startGameBtn">Ab auf die Insel!</button></dialog>
-
-  <dialog id="rulesDialog" class="game-dialog rules-dialog"><button class="dialog-close" id="closeRules" aria-label="Schließen">×</button><div class="dialog-icon">📜</div><div class="eyebrow">KURZ ERKLÄRT</div><h2>So funktioniert's</h2><div class="rules-list"><p><b>🎲 Dein Zug:</b> Würfeln, Figur ziehen, Feldaktion ausführen. Danach ist die nächste Person dran.</p><p><b>⭐ Sternenfeld:</b> Ein Stern kostet 20 Münzen. Du musst nicht darauf landen – Vorbeilaufen reicht. Nach dem Kauf zieht der Stern um.</p><p><b>🪙 Münzen:</b> Sammle sie auf den Feldern. Sie sind wichtig, um Sterne zu kaufen und entscheiden bei Gleichstand.</p><p><b>🎯 Challenges:</b> Auf roten Feldern kommt eine kleine Party-Aufgabe. Die Crew entscheidet gemeinsam, ob sie geschafft wurde.</p><p><b>🏆 Spielende:</b> Nach 20 Runden gewinnt die Person mit den meisten Sternen. Bei Gleichstand gewinnt die Person mit mehr Münzen.</p></div><button class="primary full" id="rulesOkay">Alles klar!</button></dialog>
+  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true">
+    <div id="modal" class="modal">
+      <button id="closeModal" class="modal-close" aria-label="Schließen">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
