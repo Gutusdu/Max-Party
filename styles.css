@@ -30,3 +30,4 @@
   65% { transform: scale(1.13); }
   100% { transform: scale(1); }
 }
+.star-marker{position:absolute;z-index:6;transform:translate(-50%,-125%);width:clamp(30px,3.8vw,44px);height:clamp(30px,3.8vw,44px);display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#fff1a8,#ffbd32);border:3px solid #fff7cf;box-shadow:0 4px 0 #b67a21,0 0 20px #ffd166aa;font-size:clamp(18px,2.2vw,27px);animation:star-float 1.8s ease-in-out infinite;pointer-events:none}@keyframes star-float{0%,100%{margin-top:0}50%{margin-top:-5px}}
